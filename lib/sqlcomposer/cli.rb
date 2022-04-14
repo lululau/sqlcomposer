@@ -28,7 +28,7 @@ module Sqlcomposer
       def parse_params(raw_sql, line)
         return [] unless raw_sql
         raw_params = line.split(/=>\s+Parameters:/).last.chomp.strip
-        raw_params.split(/,\s*/).map do |raw_param|
+        raw_params.split(/(?<=\)), /).map do |raw_param|
           raw_param.strip.scan(/([^()]+)\((\w+?)\)/).first
         end
       end
